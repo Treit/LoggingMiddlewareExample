@@ -7,6 +7,6 @@ I believe this is due to wiring up the middleware in the wrong order. This small
 
 Run the demonstration server and enter this URL:
 
-http://localhost:5001/Uh-Oh
+http://localhost:5000/Uh-Oh
 
 This will trigger the developer exception page, while at the same time logging the response body to the console.
