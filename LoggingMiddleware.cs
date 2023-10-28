@@ -19,7 +19,7 @@
             Console.WriteLine("LoggingMiddleware invoked.");
 
             var originalBody = context.Response.Body;
-            using var newBody = new MemoryStream();
+            var newBody = new MemoryStream();
             context.Response.Body = newBody;
 
             try
@@ -29,7 +29,7 @@
             finally
             {
                 newBody.Seek(0, SeekOrigin.Begin);
-                var bodyText = await new StreamReader(context.Response.Body).ReadToEndAsync();
+                var bodyText = await new StreamReader(newBody).ReadToEndAsync();
                 Console.WriteLine($"LoggingMiddleware: {bodyText}");
                 newBody.Seek(0, SeekOrigin.Begin);
                 await newBody.CopyToAsync(originalBody);
